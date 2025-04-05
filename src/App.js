@@ -1,76 +1,51 @@
 import React, { useState } from 'react';
+import './App.css';
 
-function Calculator() {
-  // State for the first number, second number, operator, and result.
-  const [num1, setNum1] = useState('');
-  const [num2, setNum2] = useState('');
-  const [operator, setOperator] = useState('+');
-  const [result, setResult] = useState(null);
+function App() {
+  const [prompt, setPrompt] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [appReady, setAppReady] = useState(false);
 
-  // Function to perform the calculation.
-  const calculateResult = () => {
-    const a = parseFloat(num1);
-    const b = parseFloat(num2);
-    if (isNaN(a) || isNaN(b)) {
-      alert("Please enter valid numbers");
-      return;
-    }
-    
-    let res;
-    switch (operator) {
-      case '+':
-        res = a + b;
-        break;
-      case '-':
-        res = a - b;
-        break;
-      case '*':
-        res = a * b;
-        break;
-      case '/':
-        if (b === 0) {
-          alert("Cannot divide by zero");
-          return;
-        }
-        res = a / b;
-        break;
-      default:
-        res = 0;
-    }
-    setResult(res);
+  const handlePushIt = () => {
+    setLoading(true);
+    setAppReady(false);
+    // Simulate code generation/deployment delay
+    setTimeout(() => {
+      setLoading(false);
+      setAppReady(true);
+    }, 2000);
   };
 
   return (
-    <div style={{ margin: '2rem' }}>
-      <h1>Simple Calculator</h1>
-      <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+    <div className="container">
+      <div className="app-box">
         <input
           type="text"
-          value={num1}
-          onChange={(e) => setNum1(e.target.value)}
-          placeholder="Enter first number"
+          placeholder="Enter your prompt..."
+          value={prompt}
+          onChange={(e) => setPrompt(e.target.value)}
+          disabled={loading}
+          className="input-field"
         />
-        <select value={operator} onChange={(e) => setOperator(e.target.value)}>
-          <option value="+">+</option>
-          <option value="-">-</option>
-          <option value="*">*</option>
-          <option value="/">/</option>
-        </select>
-        <input
-          type="text"
-          value={num2}
-          onChange={(e) => setNum2(e.target.value)}
-          placeholder="Enter second number"
-        />
-        <button onClick={calculateResult}>Calculate</button>
+        <button
+          onClick={handlePushIt}
+          disabled={loading || prompt.trim() === ""}
+          className="push-button"
+        >
+          Push It
+        </button>
+        {loading && <div className="loading">Loading...</div>}
+        {appReady && (
+          <div className="result">
+            <p>Your app is ready!</p>
+            <a href="https://push-todo.vercel.app" target="_blank" rel="noopener noreferrer">
+              Visit App
+            </a>
+          </div>
+        )}
       </div>
-      {result !== null && (
-        <div style={{ marginTop: '1rem' }}>
-          <h2>Result: {result}</h2>
-        </div>
-      )}
     </div>
   );
 }
 
-export default Calculator;
+export default App;
