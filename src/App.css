@@ -26,28 +26,45 @@ body, html {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
   background-color: #272727;
   width: 100%;
-  max-width: 400px;
+  max-width: 100%; /* Removed fixed max-width */
+  position: relative; /* Establish positioning context for button */
 }
 
 /* Input field styling */
 .input-field {
   width: 100%;
-  padding: 0.75rem;
-  margin-bottom: 1rem;
-  border: none;
-  border-radius: 8px;
-  background-color: #3a3a3a;
+  display: block;
+  margin: 0; /* Flush with container */
+  padding: 0.1rem 0.75rem 0.5rem 0.75rem; /* Minimal top padding to push text to the top */
+  background-color: transparent;  /* Seamless with app box */
+  border: none; /* No borders */
   color: #f5f5f5;
   font-size: 1rem;
+  text-align: left; /* Align text to the left */
+  box-sizing: border-box;
+}
+
+/* Remove focus outline and glowing effect */
+.input-field:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Placeholder styling */
+.input-field::placeholder {
+  text-align: left; /* Align placeholder text to the left */
 }
 
 /* Push It button styling */
 .push-button {
+  position: absolute; /* Lock button's position within .app-box */
+  bottom: 1rem;       /* Distance from bottom */
+  right: 1rem;        /* Distance from right */
   padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 8px;
-  background-color: #0070f3;
-  color: #fff;
+  background-color: #b0b0b0;  /* More grey background */
+  color: #272727; /* Dark text for contrast */
   font-size: 1rem;
   cursor: pointer;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
@@ -55,7 +72,7 @@ body, html {
 
 /* Button hover effect */
 .push-button:hover {
-  box-shadow: 0 0 12px 4px #00e6ff;
+  box-shadow: 0 0 12px 4px #ffffff; /* White glowing effect */
   transform: translateY(-2px);
 }
 
@@ -92,6 +109,6 @@ body, html {
     padding: 0.75rem;
   }
   .input-field {
-    padding: 0.75rem;
+    padding: 0.25rem 0.75rem 0.5rem 0.75rem;
   }
 }

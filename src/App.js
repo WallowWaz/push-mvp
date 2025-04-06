@@ -32,7 +32,7 @@ function App() {
           disabled={loading || prompt.trim() === ""}
           className="push-button"
         >
-          Push It
+          Push
         </button>
         {loading && <div className="loading">Loading...</div>}
         {appReady && (
