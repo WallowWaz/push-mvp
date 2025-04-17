@@ -1,60 +1,64 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .game-container {
   text-align: center;
-  margin-top: 50px;
-  /* Use Verdana first, then common monospace fonts, then generic sans-serif */
-  font-family: Verdana, Consolas, 'Courier New', monospace, sans-serif;
+}
+
+.timer-wrapper {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.timer-circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .target-letter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 100px;
   font-weight: bold;
-  margin: 20px;
-  /* Prioritize clear monospace fonts for the target letter */
-  font-family: Consolas, 'Courier New', 'Lucida Console', Monaco, monospace;
+  color: black;
 }
 
 button {
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 18px;
   cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.game-over h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
 .game-over p,
 .game-play p {
   font-size: 20px;
-}
-
-.speed-indicator {
-  font-size: 18px;
-  font-style: italic;
-  /* Red/Average style (Default) */
-  color: #8B0000; /* Dark red text */
-  font-weight: bold;
-  text-shadow:
-    0 0 3px #FF4500, /* Red-orange inner */
-    0 0 6px #DC143C; /* Crimson outer */
-  margin-top: -15px;
-  margin-bottom: 10px;
-  transition: text-shadow 0.3s ease-out, color 0.3s ease-out; /* Smooth transition */
-}
-
-/* Style for the "Good!" state (Yellow Glow) */
-.speed-indicator.good {
-  color: #660; /* Darker yellow text */
-  text-shadow:
-    0 0 5px #ff0,   /* Inner yellow glow */
-    0 0 10px #ff0,  /* Middle yellow glow */
-    0 0 15px #ffcc00; /* Fainter outer yellow-orange */
-}
-
-/* Style for the "Amazing!" state (Green Glow) */
-.speed-indicator.amazing {
-  color: #030; /* Darker green text */
-  text-shadow:
-    0 0 5px #0f0,   /* Inner green glow */
-    0 0 10px #0f0,  /* Middle green glow */
-    0 0 15px #0c0,  /* Outer green glow */
-    0 0 20px #090;  /* Fainter outer green */
 }
 
 /* --- Mobile Styles --- */
@@ -64,18 +68,14 @@ button {
     padding: 10px;
   }
 
-  h1 {
-    font-size: 1.8em; /* Slightly smaller title */
-  }
-
   .target-letter {
-    font-size: 80px; /* Smaller target letter */
+    font-size: 80px;
     margin: 15px;
   }
 
   .game-over h2,
   .game-play p {
-    font-size: 18px; /* Adjust text size */
+    font-size: 18px;
   }
 
   .game-over p {
@@ -83,18 +83,17 @@ button {
   }
 
   button {
-    padding: 12px 25px; /* Larger button for tapping */
+    padding: 12px 25px;
     font-size: 18px;
   }
 
-  .speed-indicator {
-    font-size: 16px;
-    margin-top: -10px;
+  .game-play {
+     cursor: pointer;
+     padding-bottom: 20px;
   }
 
-  /* Ensure game area is easily tappable to focus input */
-  .game-play {
-     cursor: pointer; /* Indicate tappable area */
-     padding-bottom: 20px; /* Add some space at the bottom */
+  .timer-circle {
+    width: 80px;
+    height: 80px;
   }
 }
