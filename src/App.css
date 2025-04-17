@@ -51,6 +51,25 @@ button:hover {
   background-color: #0056b3;
 }
 
+.matte-btn {
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #222;
+  color: #eee;
+  transition: background-color 0.2s;
+  box-shadow: none;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.matte-btn:hover:enabled {
+  background-color: #444;
+  color: #fff;
+}
+
 .game-over h2 {
   font-size: 24px;
   margin-bottom: 20px;
